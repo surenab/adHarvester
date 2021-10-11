@@ -5,3 +5,6 @@ dist
 build
 adHarvester.egg-info
 venv
+__pycache__
+tests/__pycache__
+adHarvester/__pycache__
