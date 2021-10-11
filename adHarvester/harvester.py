@@ -38,3 +38,41 @@ class Harvester:
         response = requests.get(url)
         return self.scrap_from_html(response.text)
 
+
+
+
+test_url = "https://www.adverts.ie/car/opel/insignia/2010-opel-insignia/25079005"
+
+r = requests.get(test_url)
+my_html = r.text
+
+f = open('carzone.html', 'w')
+f.write(my_html)
+f.close()
+
+
+donedeal_new_car_rules = {
+    'price': {'name': 'div.c-overview-panel__info.key-info > ul',
+              'selector_type': 'table',
+              'attr': {'master': {'tag': 'li', },
+                       'slave': {'tag': 'span', 'attr': {'class': 'attr-value'}},
+                       'keyword': 'Price', }
+              },
+    'fuel_type': {'name': 'div.c-overview-panel__info.key-info > ul',
+                  'selector_type': 'table',
+                  'attr': {'master': {'tag': 'li', },
+                           'slave': {'tag': 'span', 'attr': {'class': 'attr-value'}},
+                           'keyword': 'Fuel Type', }
+                  },
+    'make': {'name': 'span > a:nth-child(3) > span',
+             'selector_type': 'css'},
+    'model': {'name': 'span > a:nth-child(4) > span',
+              'selector_type': 'css'},
+    'header': {'name': '#js-react-page > div > div:nth-child(3) > div > div > div:nth-child(2) > h1',
+               'selector_type': 'css'},
+}
+
+h = Harvester(donedeal_new_car_rules)
+h.init_rules()
+
+print(h.scrap_from_html(my_html))

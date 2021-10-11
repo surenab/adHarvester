@@ -1,6 +1,5 @@
 import json
 from json import JSONDecodeError
-from pprint import pprint
 
 import js2py
 from bs4 import BeautifulSoup
