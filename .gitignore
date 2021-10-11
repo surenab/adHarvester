@@ -1,0 +1,7 @@
+main.py
+setup.cfg
+setup.py
+dist
+build
+adHarvester.egg-info
+venv
